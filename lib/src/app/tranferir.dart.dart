@@ -1,3 +1,4 @@
+import 'package:bytbank/src/app/widget/formModelo.dart';
 import 'package:flutter/material.dart';
 
 class Transferir extends StatefulWidget {
@@ -13,10 +14,9 @@ class _TransferirState extends State<Transferir> {
   final TextEditingController _valorController = TextEditingController();
 
   _submit(numeroConta, valor) {
-    debugPrint('${numeroConta}');
-    debugPrint('${valor}');
     if (_formKey.currentState.validate()) {
-      // Process data.
+      debugPrint('${numeroConta}');
+      debugPrint('${valor}');
     }
   }
 
@@ -33,43 +33,17 @@ class _TransferirState extends State<Transferir> {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              TextFormField(
-                controller: _numeroContaController,
-                decoration: InputDecoration(
-                  icon: Icon(
-                    Icons.contacts,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                  hintText: '0000',
-                  labelText: 'Número da conta *',
-                ),
-                keyboardType: TextInputType.number,
-                onSaved: (String value) {},
-                validator: (String value) {
-                  if (value == null || value.isEmpty) {
-                    return 'O Número da conta  é obrigátorio';
-                  }
-                  return null;
-                },
+              FormModelo(
+                _numeroContaController,
+                'Número da Conta',
+                dica: '0000',
               ),
-              TextFormField(
-                controller: _valorController,
-                decoration: InputDecoration(
-                  icon: Icon(
-                    Icons.monetization_on_outlined,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                  hintText: '00.00',
-                  labelText: 'Valor a tranferir *',
-                ),
-                keyboardType: TextInputType.number,
-                onSaved: (String value) {},
-                validator: (String value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Valor a tranferir e obrigátorio';
-                  }
-                  return null;
-                },
+              FormModelo(
+                _valorController,
+                'Valor',
+                dica: '0000',
+                icons: Icon(Icons.contacts),
+                textInputType: TextInputType.number,
               ),
               Container(
                 padding: EdgeInsets.only(top: 15),
