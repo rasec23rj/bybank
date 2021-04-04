@@ -20,20 +20,30 @@ class _TransferirState extends State<Transferir> {
       debugPrint('${valor}');
       Navigator.of(context).pop();
     }
-
   }
-
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child:
-      Form(
+      child: Form(
         key: _formKey,
         child: Padding(
           padding: const EdgeInsets.all(0),
           child: Column(
             children: [
+              Container(
+                width: MediaQuery.of(context).size.width,
+                color: Theme.of(context).primaryColor,
+                padding: EdgeInsets.all(8),
+                child: Center(
+                    child: Text(
+                  "Formulario de tranferências",
+                  style: TextStyle(
+                      color: Theme.of(context).secondaryHeaderColor,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold),
+                )),
+              ),
               FormModelo(
                 _numeroContaController,
                 'Número da Conta',
@@ -51,7 +61,6 @@ class _TransferirState extends State<Transferir> {
                 margin: EdgeInsets.only(top: 1),
                 padding: EdgeInsets.only(top: 15, bottom: 1),
                 width: MediaQuery.of(context).size.width,
-
                 child: ElevatedButton.icon(
                     onPressed: () {
                       _submit(
@@ -63,14 +72,13 @@ class _TransferirState extends State<Transferir> {
               Container(
                 padding: EdgeInsets.only(top: 5),
                 width: MediaQuery.of(context).size.width,
-                child:
-                ElevatedButton(
-                  style:ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(Colors.amber[700]),
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.amber[700]),
                   ),
                   child: const Text('Cancelar'),
                   onPressed: () => Navigator.pop(context),
-
                 ),
               ),
             ],
