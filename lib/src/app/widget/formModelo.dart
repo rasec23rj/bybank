@@ -19,21 +19,26 @@ class FormModelo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-        controller: controller,
-        decoration: InputDecoration(
-          hintText: dica,
-          labelText: rotulo,
-          enabled: true,
-          prefixIcon: icons != null ? icons : null,
-        ),
-        keyboardType: textInputType,
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-        onChanged: (value) {},
-        onSaved: (String value) {},
-        validator: (value) => value.isEmpty
-            ? '$rotulo é obrigátorio'
-            : (numberRegExp.hasMatch(value) ? null : 'Somente números'));
+    return Container(
+      padding: EdgeInsets.only(top: 10),
+      child: TextFormField(
+          controller: controller,
+          decoration: InputDecoration(
+            hintText: dica,
+            labelText: rotulo,
+            enabled: true,
+            contentPadding: EdgeInsets.all(10),
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+            prefixIcon: icons != null ? icons : null,
+          ),
+          keyboardType: textInputType,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          onChanged: (value) {},
+          onSaved: (String value) {},
+          validator: (value) => value.isEmpty
+              ? '$rotulo é obrigátorio'
+              : (numberRegExp.hasMatch(value) ? null : 'Somente números')),
+    );
   }
 }
 
