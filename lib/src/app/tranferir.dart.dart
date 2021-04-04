@@ -1,3 +1,4 @@
+import 'package:bytbank/src/app/widget/card_widget.dart';
 import 'package:bytbank/src/app/widget/formModelo.dart';
 import 'package:flutter/material.dart';
 
@@ -17,26 +18,27 @@ class _TransferirState extends State<Transferir> {
     if (_formKey.currentState.validate()) {
       debugPrint('${numeroConta}');
       debugPrint('${valor}');
+      Navigator.of(context).pop();
     }
+
   }
+
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
-        title: Text('Tranferir '),
-      ),
-      body: Form(
+    return Container(
+      child:
+      Form(
         key: _formKey,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(0),
           child: Column(
             children: [
               FormModelo(
                 _numeroContaController,
                 'Número da Conta',
                 dica: '0000',
+                textInputType: TextInputType.number,
               ),
               FormModelo(
                 _valorController,
@@ -46,8 +48,10 @@ class _TransferirState extends State<Transferir> {
                 textInputType: TextInputType.number,
               ),
               Container(
-                padding: EdgeInsets.only(top: 15),
+                margin: EdgeInsets.only(top: 1),
+                padding: EdgeInsets.only(top: 15, bottom: 1),
                 width: MediaQuery.of(context).size.width,
+
                 child: ElevatedButton.icon(
                     onPressed: () {
                       _submit(
@@ -55,7 +59,20 @@ class _TransferirState extends State<Transferir> {
                     },
                     icon: Icon(Icons.save),
                     label: Text('Salvar')),
-              )
+              ),
+              Container(
+                padding: EdgeInsets.only(top: 5),
+                width: MediaQuery.of(context).size.width,
+                child:
+                ElevatedButton(
+                  style:ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(Colors.amber[700]),
+                  ),
+                  child: const Text('Cancelar'),
+                  onPressed: () => Navigator.pop(context),
+
+                ),
+              ),
             ],
           ),
         ),

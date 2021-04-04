@@ -7,13 +7,8 @@ class Cardwidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        CardValoreswidget((Tranferencia(100.00, 1000))),
-        CardValoreswidget((Tranferencia(200.00, 2000))),
-        CardValoreswidget((Tranferencia(300.00, 3000))),
-      ],
-    );
+    return CardValoreswidget((Tranferencia(100.00, 1000)));
+
   }
 }
 

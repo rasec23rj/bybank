@@ -11,19 +11,27 @@ class CardValoreswidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5.5,
-      shadowColor: Colors.tealAccent[700],
-      borderOnForeground: true,
-      child: ListTile(
-        leading: Icon(Icons.monetization_on),
-        title: Text(
-          '${_tranferencia.numeroConta}',
-          style: TextStyle(color: Color(0xFF088F35)),
-        ),
-        subtitle: Text('${_tranferencia.valor}'),
-        trailing: Icon(Icons.more_vert),
-      ),
+    return ListView.separated(
+      itemCount: 23,
+      itemBuilder: (BuildContext context, int index) {
+         return Column(
+            children: [
+              ListTile(
+                leading: Icon(Icons.monetization_on),
+                title: Text(
+                  '${_tranferencia.numeroConta}',
+                  style: TextStyle(color: Color(0xFF088F35)),
+                ),
+                subtitle: Text('${_tranferencia.valor}'),
+                trailing: Icon(Icons.more_vert),
+              ),
+
+            ],
+          );
+      },
+      separatorBuilder: (BuildContext context, int index) => const Divider(),
+
+
     );
   }
 }

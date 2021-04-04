@@ -1,6 +1,8 @@
+import 'package:bytbank/src/utils/regex.dart';
 import 'package:flutter/material.dart';
 
 class FormModelo extends StatelessWidget {
+  Regex regex;
   TextEditingController controller;
   String rotulo;
   String dica;
@@ -29,12 +31,12 @@ class FormModelo extends StatelessWidget {
       autovalidateMode: AutovalidateMode.always,
       onChanged: (value) {},
       onSaved: (String value) {},
-      validator: (String value) {
-        if (value == null || value.isEmpty) {
-          return '$rotulo é obrigátorio';
-        }
-        return null;
-      },
+      validator: (value) => value.isEmpty
+            ? '$rotulo é obrigátorio'
+            : (numberRegExp.hasMatch(value)
+            ? null
+            : 'Somente números')
     );
   }
 }
+RegExp numberRegExp = RegExp(r'\d');
