@@ -16,8 +16,8 @@ class _TransferirState extends State<Transferir> {
 
   _submit(numeroConta, valor) {
     if (_formKey.currentState.validate()) {
-      debugPrint('${numeroConta}');
-      debugPrint('${valor}');
+      print('${numeroConta}');
+      print('${valor}');
       Navigator.of(context).pop();
     }
   }
