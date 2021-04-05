@@ -1,37 +1,35 @@
+import 'package:bytbank/src/services/tranferencia_bloc.dart';
 import 'package:flutter/material.dart';
 
-import 'card_widget.dart';
-
 class CardValoreswidget extends StatelessWidget {
-  final Tranferencia _tranferencia;
-
-  CardValoreswidget(
-    this._tranferencia,
-  );
+  TranfereincaBloc tranfereincaBloc = TranfereincaBloc();
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      itemCount: 23,
-      itemBuilder: (BuildContext context, int index) {
-         return Column(
-            children: [
-              ListTile(
-                leading: Icon(Icons.monetization_on),
-                title: Text(
-                  '${_tranferencia.numeroConta}',
-                  style: TextStyle(color: Color(0xFF088F35)),
-                ),
-                subtitle: Text('${_tranferencia.valor}'),
-                trailing: Icon(Icons.more_vert),
-              ),
-
-            ],
+    tranfereincaBloc.list();
+    return StreamBuilder(
+        stream: tranfereincaBloc.ouput,
+        builder: (context, snapshot) {
+          return ListView.builder(
+            itemCount: tranfereincaBloc.tranferencas.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Column(
+                children: [
+                  ListTile(
+                    leading: Icon(Icons.monetization_on),
+                    title: Text(
+                      '${tranfereincaBloc.tranferencas[index].numeroConta}',
+                      style: TextStyle(color: Color(0xFF088F35)),
+                    ),
+                    subtitle:
+                        Text('${tranfereincaBloc.tranferencas[index].valor}'),
+                    trailing: Icon(Icons.more_vert),
+                  ),
+                ],
+              );
+            },
+            // separatorBuilder: (BuildContext context, int index) => const Divider(),
           );
-      },
-      separatorBuilder: (BuildContext context, int index) => const Divider(),
-
-
-    );
+        });
   }
 }

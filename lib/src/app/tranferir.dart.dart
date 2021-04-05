@@ -1,5 +1,6 @@
 import 'package:bytbank/src/app/widget/card_widget.dart';
 import 'package:bytbank/src/app/widget/formModelo.dart';
+import 'package:bytbank/src/services/tranferencia_bloc.dart';
 import 'package:flutter/material.dart';
 
 class Transferir extends StatefulWidget {
@@ -13,11 +14,12 @@ class _TransferirState extends State<Transferir> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _numeroContaController = TextEditingController();
   final TextEditingController _valorController = TextEditingController();
+  TranfereincaBloc tranfereincaBloc = TranfereincaBloc();
 
   _submit(numeroConta, valor) {
     if (_formKey.currentState.validate()) {
-      print('${numeroConta}');
-      print('${valor}');
+      tranfereincaBloc.save(numeroConta, valor);
+
       Navigator.of(context).pop();
     }
   }

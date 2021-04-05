@@ -1,10 +1,16 @@
 import 'package:bytbank/src/app/tranferir.dart.dart';
 import 'package:bytbank/src/app/widget/card_widget.dart';
+import 'package:bytbank/src/services/tranferencia_bloc.dart';
 import 'package:flutter/material.dart';
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
   const App({Key key}) : super(key: key);
 
+  @override
+  _AppState createState() => _AppState();
+}
+
+class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,8 +34,9 @@ class App extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      Expanded(child: Transferir(),) ,
-
+                      Expanded(
+                        child: Transferir(),
+                      ),
                     ],
                   ),
                 ),
